@@ -1,10 +1,10 @@
 /* la direccion a la cual mandamos la peticion: http://localhost3000/saludo */
 /* la peticion con nuestro dato .name , con query params (incluyendo los datos en la direccion) 
 separando de la direccion ?
-http://localhost3000/saludo?name=Alejandro */
+http://localhost3000/saludo?name=Alejandro%20Cruz (%20 para espacios) */
 const express = require ('express');
 const app = express();
-app.get('/saludo',function(req,res){  /*  */
+app.get('/saludo',function(req,res){  /* Cambiamos la direccion de '/' a '/saludo' */
     res.send(`Hola ${req.query.name}`); /* Usamos template strings, ya que soporta interpolacion con $. 
     Dentro de nuestro objeto req tenemos otro objeto de nombre query que tiene una propiedad por cada dato que recibe en la peiticion.
     en este caso la propiedad .name */
