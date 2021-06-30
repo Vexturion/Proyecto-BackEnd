@@ -1,17 +1,18 @@
-/* Servir archivos estativos */
+/* Motor de vistas */
 const express = require ('express');
 
 const app = express();
 
-/* middleware de archivos estaticos */
-/* especificamos una carpeta donde tendremos los arcvhivos estaticos con express.static */
-app.use('/assets', express.static('assets')); /* colocamos la direccion de los archivos estaticos detras de una ruta, que no tiene que ver con el nombre de la carpeta
-donde si tiene que ver el nombre de la carpeta es en el argumento para el metodo express.static('assets') */
+/* Usamos el metodo set del objeto app para configurar nuestro motor de vistas; en el primer argumento indicamos que usamos un motor de vistas
+y en el segundo el motor de vistas que usaremos, en este caso ejs. Por defecto Express usara la carpeta views que creamos en nuestro proyecto 
+para almacenar los archivos de las vistas y la extension de los archivos dependera del motor de vusta que usemos, en este caso .ejs */
+app.set('view engine', 'ejs');
+
+app.use('/assets', express.static('assets')); 
 
 app.get('/', function(req, res){ 
-    res.sendFile('index.html',{ 
-        root: __dirname         
-    });
+    res.render('index');          /*res.sendFile('index.html',{   con motores de vista no es necesario especificar rutas de archivo, unicamente usamos el metodo .render
+                                        root: __dirname */         
 });
 
 app.listen(3000);
